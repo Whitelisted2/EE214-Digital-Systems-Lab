@@ -1,0 +1,237 @@
+
+--------VHDL CODE FOR 1 bit full adder in dataflow--------
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity fulladder is
+port( i1, i2, i3: in std_logic;
+		o1, o2 : out std_logic
+	 );
+end fulladder;
+
+architecture arch1 of fulladder is
+Begin
+	o1 <= i1 xor i2 xor i3;
+	o2 <= (i1 and i2) or ((i1 xor i2) and i3);
+end arch1;
+
+-------------------------------------------------------------------------------------------
+
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+--Define input and output ports–
+entity xor_gate is
+port( i1, i2: in std_logic;
+--VHDL CODE FOR 1 bit full  adder in dataflow-----
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+--Define input and output ports–
+entity fulladder is
+port( i1, i2, i3: in std_logic;
+		o1, o2 : out std_logic
+	 );
+end fulladder;
+
+--Defining the architecture of full adder in dataflow modelling style—-
+architecture arch1 of fulladder is
+Begin
+	o1 <= i1 xor i2 xor i3;
+	o2 <= (i1 and i2) or ((i1 xor i2) and i3);
+end arch1;
+
+-------------------------------------------------------------------------------------------
+
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+--Define input and output ports–
+entity xor_gate is
+port( i1, i2: in std_logic;
+		o1: out std_logic
+	 );
+end xor_gate;
+
+--Defining the architecture of full adder in dataflow modelling style—-
+architecture arch2 of xor_gate is
+Begin
+	o1 <= i1 xor i2;
+end arch2;
+
+-------------------------------------------------------------------------------------------
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+--use IEEE.NUMERIC_STD.ALL;
+
+entity problem1 is
+port (a : in STD_LOGIC_VECTOR (2 downto 0);
+		b : in STD_LOGIC_VECTOR (2 downto 0);
+		m : in STD_LOGIC;
+		sum : out STD_LOGIC_VECTOR (2 downto 0);
+		cout : out STD_LOGIC
+		--c1 : inout std_logic;
+		--c2 : inout std_logic
+		
+		);
+end problem1;
+
+-----DEFINE THE ARCHITECTURE FOR ADDER_SUBTRACTOR-----
+architecture struc1 of problem1 is
+
+	-----DEFINE THE COMPONENT FULL ADDER USED-----
+	component fulladder is
+	port( i1, i2, i3: in std_logic;
+			o1, o2 : out std_logic
+		 );
+	end component;
+	
+	-----DEFINE THE INTERMEDIATE SIGNALS IF REQUIRED-----
+	--signal bb0 : std_logic;
+	--signal bb1 : std_logic;
+	--signal bb2 : std_logic;
+	
+	signal c1 : std_logic;
+	signal c2 : std_logic;
+	signal bb : std_logic_vector (2 downto 0);
+	
+	-----DEFINE THE FUNCTIONALITY WITH STRUCTURAL MODELING----
+	begin
+	   --bb0 <= b[0] xor m;
+		
+		bb(0) <= b(0) xor m;
+		bb(1) <= b(1) xor m;
+		bb(2) <= b(2) xor m;
+		
+		--bb1 <= b[1] xor m;
+		--bb2 <= b[2] xor m;
+		--bb <= b xor m;
+		
+	   --uu1 : xor_gate port map ( i1 => b[0], i2 => m, o1 => bb[0] );
+		--uu2 : xor_gate port map ( i1 => b[1], i2 => m, o1 => bb[1] );
+		--uu3 : xor_gate port map ( i1 => b[2], i2 => m, o1 => bb[2] );
+	          
+		--u1 : fulladder port map ( i1 <= a(0), i2 <= bb(0), i3 <= m, o1 => sum(0), o2 => c1 );
+		--u2 : fulladder port map ( i1 <= a(1), i2 <= bb(1), i3 <= c1, o1 => sum(1), o2 => c2 );
+		--u3 : fulladder port map ( i1 <= a(2), i2 <= bb(2), i3 <= c2, o1 => sum(2), o2 => cout );
+		
+		u1 : fulladder port map ( a(0), bb(0), m, sum(0), c1 );
+		u2 : fulladder port map ( a(1), bb(1), c1, sum(1), c2 );
+		u3 : fulladder port map ( a(2), bb(2), c2, sum(2), cout );
+
+end struc1;
+
+-------------------------------------------------------------------------------------------------------
+
+		o1: out std_logic
+	 );
+end xor_gate;
+
+--Defining the architecture of full adder in dataflow modelling style—-
+architecture arch2 of xor_gate is
+Begin
+	o1 <= i1 xor i2;
+end arch2;
+
+-------------------------------------------------------------------------------------------
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+--use IEEE.NUMERIC_STD.ALL;
+
+entity problem1 is
+port (a : in STD_LOGIC_VECTOR (2 downto 0);
+		b : in STD_LOGIC_VECTOR (2 downto 0);
+		m : in STD_LOGIC;
+		sum : out STD_LOGIC_VECTOR (2 downto 0);
+		cout : out STD_LOGIC
+		--c1 : inout std_logic;
+		--c2 : inout std_logic
+		
+		);
+end problem1;
+
+-----DEFINE THE ARCHITECTURE FOR ADDER_SUBTRACTOR-----
+architecture struc1 of problem1 is
+
+	-----DEFINE THE COMPONENT FULL ADDER USED-----
+	component fulladder is
+	port( i1, i2, i3: in std_logic;
+			o1, o2 : out std_logic
+		 );
+	end component;
+	
+	-----DEFINE THE INTERMEDIATE SIGNALS IF REQUIRED-----
+	--signal bb0 : std_logic;
+	--signal bb1 : std_logic;
+	--signal bb2 : std_logic;
+	
+	signal c1 : std_logic;
+	signal c2 : std_logic;
+	signal bb : std_logic_vector (2 downto 0);
+	
+	-----DEFINE THE FUNCTIONALITY WITH STRUCTURAL MODELING----
+	begin
+	   --bb0 <= b[0] xor m;
+		
+		bb(0) <= b(0) xor m;
+		bb(1) <= b(1) xor m;
+		bb(2) <= b(2) xor m;
+		
+		--bb1 <= b[1] xor m;
+		--bb2 <= b[2] xor m;
+		--bb <= b xor m;
+		
+	   --uu1 : xor_gate port map ( i1 => b[0], i2 => m, o1 => bb[0] );
+		--uu2 : xor_gate port map ( i1 => b[1], i2 => m, o1 => bb[1] );
+		--uu3 : xor_gate port map ( i1 => b[2], i2 => m, o1 => bb[2] );
+	          
+		--u1 : fulladder port map ( i1 <= a(0), i2 <= bb(0), i3 <= m, o1 => sum(0), o2 => c1 );
+		--u2 : fulladder port map ( i1 <= a(1), i2 <= bb(1), i3 <= c1, o1 => sum(1), o2 => c2 );
+		--u3 : fulladder port map ( i1 <= a(2), i2 <= bb(2), i3 <= c2, o1 => sum(2), o2 => cout );
+		
+		u1 : fulladder port map ( a(0), bb(0), m, sum(0), c1 );
+		u2 : fulladder port map ( a(1), bb(1), c1, sum(1), c2 );
+		u3 : fulladder port map ( a(2), bb(2), c2, sum(2), cout );
+
+end struc1;
+
+--------------------------------------------------------------------------------------------------------------------------
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+
+entity problem1 is
+port( encoder_in : in STD_LOGIC_VECTOR(3 downto 0);
+bin_out : out STD_LOGIC_VECTOR(1 downto 0);
+enable : in STD_LOGIC 
+);
+end problem1;
+
+architecture behavioral of problem1 is
+begin
+   c1 : process(enable, encoder_in)
+	begin
+	if enable = '1' then
+		if encoder_in(0) = '1' then
+			bin_out(0) <= '0';
+			bin_out(1) <= '0';
+		elsif encoder_in(1) = '1' then
+			bin_out(0) <= '0';
+			bin_out(1) <= '1';
+		elsif encoder_in(2) = '1' then
+			bin_out(0) <= '1';
+			bin_out(1) <= '0';
+		elsif encoder_in(3) = '1' then
+			bin_out(0) <= '1';
+			bin_out(1) <= '1';
+		end if;
+		
+	else
+	   bin_out(0) <= '0';
+		bin_out(1) <= '0';
+	end if;
+	end process c1;
+end behavioral;
+
+-------------------------------------------------------------------------------------------------------
+
